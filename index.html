@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stopwatch</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <main>
+        <aside class="s"></aside>
+        <aside class="ms"></aside>
+        <div class="dot"></div>
+    </main>
+
+</body>
+<script>
+    const secondHand = document.querySelector('.s');
+    const minuteHand = document.querySelector('.ms');
+
+        function updateClockHands() {
+            const now = new Date();
+
+            // Sekundvisare
+            const seconds = now.getSeconds();
+            // 360 grader / 60 sekunder = 6 grader per sekund
+            const secondRotation = seconds * 6; 
+            secondHand.style.transform = `translate(-50%, -100%) rotate(${secondRotation}deg)`;
+
+            const minutes = now.getMinutes();
+             // 360 grader / 60 minuter
+            const minuteRotation = (minutes + seconds / 60) * 6; 
+            minuteHand.style.transform = `translate(-50%, -100%) rotate(${minuteRotation}deg)`;
+        }
+
+        // Uppdatera omedelbart vid laddning
+            updateClockHands();
+            // Uppdatera sekund och minutvisaren varje sekund
+            setInterval(updateClockHands, 1000)
+</script>
+
+</html>
